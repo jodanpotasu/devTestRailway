@@ -1,6 +1,5 @@
 package pl.innokrea.devtest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,21 +15,21 @@ import java.util.Map;
 @SpringBootApplication
 public class InnokreaApplication implements CommandLineRunner {
 
+    private final RailwayConnectionsService railwayConnectionsService;
+    private final StationRepository stationRepository;
+    private final TrainRepository trainRepository;
+    private final LinesStationsRepository linesStationsRepository;
+
+    public InnokreaApplication(RailwayConnectionsService railwayConnectionsService, StationRepository stationRepository, TrainRepository trainRepository, LinesStationsRepository linesStationsRepository) {
+        this.railwayConnectionsService = railwayConnectionsService;
+        this.stationRepository = stationRepository;
+        this.trainRepository = trainRepository;
+        this.linesStationsRepository = linesStationsRepository;
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(InnokreaApplication.class, args);
     }
-
-    @Autowired
-    private RailwayConnectionsService railwayConnectionsService;
-
-    @Autowired
-    private StationRepository stationRepository;
-
-    @Autowired
-    private TrainRepository trainRepository;
-
-    @Autowired
-    private LinesStationsRepository linesStationsRepository;
 
     @Override
     public void run(String... args) {
